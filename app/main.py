@@ -64,8 +64,9 @@ app.include_router(rss.router)
 async def home(request: Request):
     """Home page."""
     return templates.TemplateResponse(
-        "index.html",
-        {"request": request, "app_name": settings.app_name}
+        request=request,
+        name="index.html",
+        context={"app_name": settings.app_name}
     )
 
 
@@ -73,8 +74,9 @@ async def home(request: Request):
 async def create_feed_page(request: Request):
     """Create feed page."""
     return templates.TemplateResponse(
-        "create_feed.html",
-        {"request": request, "app_name": settings.app_name}
+        request=request,
+        name="create_feed.html",
+        context={"app_name": settings.app_name}
     )
 
 
@@ -82,8 +84,9 @@ async def create_feed_page(request: Request):
 async def manage_feeds_page(request: Request):
     """Manage feeds page."""
     return templates.TemplateResponse(
-        "manage_feeds.html",
-        {"request": request, "app_name": settings.app_name}
+        request=request,
+        name="manage_feeds.html",
+        context={"app_name": settings.app_name}
     )
 
 
@@ -91,8 +94,9 @@ async def manage_feeds_page(request: Request):
 async def configure_feed_page(request: Request, feed_id: str):
     """Configure feed page."""
     return templates.TemplateResponse(
-        "configure_feed.html",
-        {"request": request, "app_name": settings.app_name, "feed_id": feed_id}
+        request=request,
+        name="configure_feed.html",
+        context={"app_name": settings.app_name, "feed_id": feed_id}
     )
 
 
