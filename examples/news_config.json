@@ -1,0 +1,31 @@
+{
+  "name": "News Site Feed",
+  "source_url": "https://news-example.com/latest",
+  "feed_config": {
+    "title": "Latest News",
+    "description": "Breaking news and updates",
+    "link": "https://news-example.com/latest"
+  },
+  "item_selectors": {
+    "items": "//div[@class='news-item']",
+    "title": ".//h3[@class='headline']/text()",
+    "link": ".//a[@class='article-link']/@href",
+    "description": ".//p[@class='summary']/text()",
+    "pubDate": ".//span[@class='timestamp']/@data-time",
+    "author": ".//span[@class='byline']/text()",
+    "category": ".//span[@class='category']/text()",
+    "image": ".//img/@data-src"
+  },
+  "detail_extraction": {
+    "enabled": true,
+    "content": "//div[@class='article-body']//p/text()",
+    "image": "//meta[@property='og:image']/@content"
+  },
+  "options": {
+    "cache_ttl": 1800,
+    "max_items": 30,
+    "enable_pagination": false,
+    "respect_robots_txt": true,
+    "request_delay": 2.0
+  }
+}

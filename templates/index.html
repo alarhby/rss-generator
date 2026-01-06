@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ app_name }} - Convert Any HTML Site to RSS</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="/" class="logo">📡 {{ app_name }}</a>
+                <nav>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/create">Create Feed</a></li>
+                        <li><a href="/manage">Manage Feeds</a></li>
+                        <li><a href="/docs">API Docs</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="hero">
+                <h1>RSS Generator</h1>
+                <p>Convert any HTML website into an RSS feed with custom XPath selectors</p>
+                <a href="/create" class="btn btn-primary">Create Your First Feed</a>
+            </div>
+
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">🌐</div>
+                    <h3>Universal Support</h3>
+                    <p>Works with any HTML website. Extract content from blogs, news sites, e-commerce, and more.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Custom XPath</h3>
+                    <p>Define custom XPath or CSS selectors to extract exactly the content you need.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📄</div>
+                    <h3>Deep Extraction</h3>
+                    <p>Automatically fetch and extract full content from individual article pages.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Smart Caching</h3>
+                    <p>Built-in caching system ensures fast feed delivery and reduces server load.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🔧</div>
+                    <h3>Easy Configuration</h3>
+                    <p>User-friendly interface with live preview and XPath testing tools.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📊</div>
+                    <h3>RESTful API</h3>
+                    <p>Full REST API with automatic Swagger documentation for developers.</p>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: 3rem;">
+                <h2>Quick Start Guide</h2>
+                <ol style="padding-left: 1.5rem;">
+                    <li style="margin-bottom: 0.75rem;"><strong>Create a Feed:</strong> Click "Create Feed" and enter the URL of the website you want to convert.</li>
+                    <li style="margin-bottom: 0.75rem;"><strong>Configure Selectors:</strong> Define XPath or CSS selectors to extract titles, links, descriptions, and more.</li>
+                    <li style="margin-bottom: 0.75rem;"><strong>Preview:</strong> Use the preview feature to test your configuration and see extracted items.</li>
+                    <li style="margin-bottom: 0.75rem;"><strong>Generate Feed:</strong> Save your configuration and get a unique RSS feed URL.</li>
+                    <li><strong>Subscribe:</strong> Use the RSS URL in your favorite RSS reader to start receiving updates.</li>
+                </ol>
+            </div>
+
+            <div class="card">
+                <h2>Example Use Cases</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <h3>Blog Posts</h3>
+                        <p>Convert any blog without an RSS feed into a subscribable feed.</p>
+                    </div>
+                    <div class="card">
+                        <h3>News Sites</h3>
+                        <p>Create custom feeds from specific sections of news websites.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Product Listings</h3>
+                        <p>Monitor e-commerce product pages for new items or price changes.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Documentation</h3>
+                        <p>Track updates to documentation sites and changelogs.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 {{ app_name }}. Built with FastAPI, BeautifulSoup, and ❤️</p>
+            <p><a href="/docs" style="color: inherit;">API Documentation</a> | <a href="https://github.com/alarhby/rss-generator" style="color: inherit;">GitHub</a></p>
+        </div>
+    </footer>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>

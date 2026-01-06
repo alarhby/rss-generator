@@ -1,0 +1,30 @@
+{
+  "name": "E-commerce Product Feed",
+  "source_url": "https://shop-example.com/products/new",
+  "feed_config": {
+    "title": "New Products",
+    "description": "Latest products from our store",
+    "link": "https://shop-example.com/products/new"
+  },
+  "item_selectors": {
+    "items": "//div[@class='product-card']",
+    "title": ".//h4[@class='product-name']/text()",
+    "link": ".//a[@class='product-link']/@href",
+    "description": ".//div[@class='product-description']/text()",
+    "pubDate": ".//span[@class='date-added']/@datetime",
+    "category": ".//span[@class='product-category']/text()",
+    "image": ".//img[@class='product-image']/@src"
+  },
+  "detail_extraction": {
+    "enabled": true,
+    "content": "//div[@class='product-details']//text()",
+    "image": "//img[@class='main-image']/@src"
+  },
+  "options": {
+    "cache_ttl": 7200,
+    "max_items": 100,
+    "enable_pagination": true,
+    "respect_robots_txt": true,
+    "request_delay": 1.5
+  }
+}

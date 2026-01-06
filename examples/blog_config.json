@@ -1,0 +1,31 @@
+{
+  "name": "Example Blog Feed",
+  "source_url": "https://example.com/blog",
+  "feed_config": {
+    "title": "Example Blog RSS Feed",
+    "description": "Latest posts from Example Blog",
+    "link": "https://example.com/blog"
+  },
+  "item_selectors": {
+    "items": "//article[@class='post']",
+    "title": ".//h2[@class='post-title']/text()",
+    "link": ".//a[@class='post-link']/@href",
+    "description": ".//div[@class='excerpt']/text()",
+    "pubDate": ".//time[@class='post-date']/@datetime",
+    "author": ".//span[@class='author']/text()",
+    "category": ".//span[@class='tag']/text()",
+    "image": ".//img[@class='featured']/@src"
+  },
+  "detail_extraction": {
+    "enabled": true,
+    "content": "//article[@class='post-content']//text()",
+    "image": "//meta[@property='og:image']/@content"
+  },
+  "options": {
+    "cache_ttl": 3600,
+    "max_items": 50,
+    "enable_pagination": false,
+    "respect_robots_txt": true,
+    "request_delay": 1.0
+  }
+}

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Feed - {{ app_name }}</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="/" class="logo">📡 {{ app_name }}</a>
+                <nav>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/create">Create Feed</a></li>
+                        <li><a href="/manage">Manage Feeds</a></li>
+                        <li><a href="/docs">API Docs</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="card">
+                <h1 class="card-title">Create New RSS Feed</h1>
+                
+                <form id="createFeedForm">
+                    <div class="form-group">
+                        <label class="form-label" for="name">Feed Name *</label>
+                        <input type="text" id="name" name="name" class="form-input" required placeholder="My Blog Feed">
+                        <p class="form-help">A friendly name for this feed</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="source_url">Source URL *</label>
+                        <input type="url" id="source_url" name="source_url" class="form-input" required placeholder="https://example.com/blog">
+                        <p class="form-help">The website URL to scrape</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="feed_title">Feed Title *</label>
+                        <input type="text" id="feed_title" name="feed_title" class="form-input" required placeholder="My Blog RSS Feed">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="feed_description">Feed Description *</label>
+                        <textarea id="feed_description" name="feed_description" class="form-textarea" required placeholder="Latest posts from my blog"></textarea>
+                    </div>
+
+                    <h2 style="margin: 2rem 0 1rem;">Item Selectors (XPath or CSS)</h2>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="items_xpath">Items Selector *</label>
+                        <input type="text" id="items_xpath" name="items_xpath" class="form-input code-input" required placeholder="//article[@class='post']">
+                        <p class="form-help">XPath to find all items on the page</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="title_xpath">Title Selector</label>
+                        <input type="text" id="title_xpath" name="title_xpath" class="form-input code-input" placeholder=".//h2[@class='title']/text()">
+                        <p class="form-help">Relative XPath for item title</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="link_xpath">Link Selector</label>
+                        <input type="text" id="link_xpath" name="link_xpath" class="form-input code-input" placeholder=".//a[@class='permalink']/@href">
+                        <p class="form-help">Relative XPath for item URL</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="description_xpath">Description Selector</label>
+                        <input type="text" id="description_xpath" name="description_xpath" class="form-input code-input" placeholder=".//div[@class='excerpt']/text()">
+                        <p class="form-help">Relative XPath for item description/excerpt</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="pubdate_xpath">Publication Date Selector</label>
+                        <input type="text" id="pubdate_xpath" name="pubdate_xpath" class="form-input code-input" placeholder=".//time/@datetime">
+                        <p class="form-help">Relative XPath for publication date</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="author_xpath">Author Selector</label>
+                        <input type="text" id="author_xpath" name="author_xpath" class="form-input code-input" placeholder=".//span[@class='author']/text()">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="category_xpath">Category Selector</label>
+                        <input type="text" id="category_xpath" name="category_xpath" class="form-input code-input" placeholder=".//span[@class='tag']/text()">
+                        <p class="form-help">Can match multiple values</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="image_xpath">Image Selector</label>
+                        <input type="text" id="image_xpath" name="image_xpath" class="form-input code-input" placeholder=".//img[@class='featured']/@src">
+                    </div>
+
+                    <h2 style="margin: 2rem 0 1rem;">Deep Content Extraction</h2>
+                    
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="enable_detail_extraction" name="enable_detail_extraction" class="form-checkbox">
+                            Enable deep content extraction from item pages
+                        </label>
+                        <p class="form-help">Fetch full content from individual item URLs</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="content_xpath">Content Selector (from detail page)</label>
+                        <input type="text" id="content_xpath" name="content_xpath" class="form-input code-input" placeholder="//article[@class='content']//text()">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="detail_image_xpath">Image Selector (from detail page)</label>
+                        <input type="text" id="detail_image_xpath" name="detail_image_xpath" class="form-input code-input" placeholder="//meta[@property='og:image']/@content">
+                    </div>
+
+                    <h2 style="margin: 2rem 0 1rem;">Options</h2>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="cache_ttl">Cache TTL (seconds)</label>
+                        <input type="number" id="cache_ttl" name="cache_ttl" class="form-input" value="3600" min="60">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="max_items">Maximum Items</label>
+                        <input type="number" id="max_items" name="max_items" class="form-input" value="50" min="1" max="200">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="request_delay">Request Delay (seconds)</label>
+                        <input type="number" id="request_delay" name="request_delay" class="form-input" value="1.0" min="0" step="0.1">
+                        <p class="form-help">Delay between requests to avoid rate limiting</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="respect_robots_txt" name="respect_robots_txt" class="form-checkbox" checked>
+                            Respect robots.txt
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="enable_pagination" name="enable_pagination" class="form-checkbox">
+                            Enable pagination (experimental)
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Create Feed</button>
+                        <a href="/manage" class="btn btn-secondary">Cancel</a>
+                    </div>
+                </form>
+
+                <div id="xpath_tester" class="card" style="margin-top: 2rem; background-color: #f8fafc;">
+                    <h3>XPath Tester</h3>
+                    <div class="form-group">
+                        <label class="form-label" for="test_xpath">Test XPath Expression</label>
+                        <input type="text" id="test_xpath" class="form-input code-input" placeholder="//h1/text()">
+                    </div>
+                    <button type="button" class="btn btn-secondary" onclick="testXPath()">Test XPath</button>
+                    <div id="xpath_results" style="margin-top: 1rem;"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 {{ app_name }}</p>
+        </div>
+    </footer>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
